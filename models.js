@@ -7,21 +7,57 @@ import { handleError } from "./utils/handleError.js";
 // 1° recuperar variables de entorno
 dotenv.config();
 const PATH_FILE_USER=process.env.PATH_FILE_USER;
+const PATH_FILE_ERROR=process.env.PATH_FILE_ERROR;
 
 // 2° Declarar los metodos
 
-const getUsers = () => {
+const getUsers = (urlfile) => {
   try {
+    if (!urlfile) {
+      throw new Error("Access denied")
+    }
+
+    const exists = existsSync(urlfile);
+
+    if (!exists) {
+      writeFileSync(urlfile, JSON.stringify([]));
+      return [];
+    }
+
+    const users = JSON.parse(readFileSync(urlfile));
+    return users;
+
   } catch (error) {
-    // const objError = handleError()
-    // return objError;
+    const objError = handleError(error, PATH_FILE_ERROR);
+    return objError;
   }
 };
 
+// const resp = getUsers(PATH_FILE_USER);
+// console.log(resp);
+
 const getUserById = (id) => {
   try {
-  } catch (error) {}
+    if (!id) {
+      throw new Error("ID is missing");
+    }
+    
+    const users = getUsers(PATH_FILE_USER);
+    const user = users.find((user) => user.id === id);
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    return user;
+  } catch (error) {
+    const objError = handleError(error, PATH_FILE_ERROR);
+    return objError;
+  }
 };
+
+const resp = getUserById();
+console.log(resp);
 
 // addUser recibe un objeto con toda la data para el nuevo usuario
 // valida que esten los datos míminos para añadir un nuevo usuario
