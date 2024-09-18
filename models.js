@@ -180,19 +180,35 @@ const updateUser = (userData) => {
   }
 };
 
-const obj = {
-    "id":"897796d9-77a5-4d06-84f6-9fd9cc6ec045",
-    "nombre":"Juan-Pablo",
-    "apellido":"Rosso",
-    "email":"juanpablorosso@gmail.com",
-    "password":"3455"
-  }  
+// const obj = {
+//     "id":"897796d9-77a5-4d06-84f6-9fd9cc6ec045",
+//     "nombre":"Juan-Pablo",
+//     "apellido":"Rosso",
+//     "email":"juanpablorosso@gmail.com",
+//     "password":"3455"
+//   }  
 
-console.log(updateUser(obj));
+// console.log(updateUser(obj));
 
 const deleteUser = (id) => {
   try {
-  } catch (error) {}
+    if (!id) {
+      throw new Error("ID is missing");
+    }
+
+    const users = getUsers(PATH_FILE_USER);
+    const userDelete = getUserById(id);
+
+    const filteredUsers = users.filter((user) => user.id !== id);
+
+    writeFileSync(PATH_FILE_USER, JSON.stringify(filteredUsers));
+    return userDelete;
+  } catch (error) {
+    const objError = handleError(error, PATH_FILE_ERROR);
+    return objError;
+  }
 };
+
+// console.log(deleteUser("897796d9-77a5-4d06-84f6-9fd9cc6ec047"));
 
 export { getUsers, getUserById, addUser, updateUser, deleteUser };
