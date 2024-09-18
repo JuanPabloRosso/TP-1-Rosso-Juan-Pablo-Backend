@@ -16,13 +16,14 @@ Esta es una aplicación de administración de usuarios construida con Node.js. L
 1. Clona el repositorio:
 
     ```bash
-    git clone https://github.com/EmmaIsaac/TP-1-Emmanuel-Isaac-Backend.git
+    git clone https://github.com/JuanPabloRosso/TP-1-Rosso-Juan-Pablo-Backend.git
     ```
 
 2. Navega al directorio del proyecto:
 
     ```bash
-    cd TP-1-Emmanuel-Isaac-Backend
+    cd TP-1-Rosso-Juan-Pablo-Backend
+
     ```
 
 3. Instala las dependencias:
