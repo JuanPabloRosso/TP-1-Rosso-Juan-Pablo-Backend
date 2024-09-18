@@ -209,4 +209,4 @@ const deleteUser = (id) => {
 
 // console.log(deleteUser("897796d9-77a5-4d06-84f6-9fd9cc6ec047"));
 
-export { getUsers, getUserById, addUser, updateUser, deleteUser };
+export { getUsers, getUserById, addUser, updateUser, deleteUser, PATH_FILE_USER };
