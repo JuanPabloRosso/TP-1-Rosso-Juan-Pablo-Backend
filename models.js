@@ -1,8 +1,6 @@
-// ORIGNIAL
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { randomUUID, createHash } from "node:crypto";
 import dotenv from "dotenv";
-// Averiguar que importar de NODE para realizar el hash del pas
 import { handleError } from "./utils/handleError.js";
 
 // 1° recuperar variables de entorno
