@@ -14,12 +14,16 @@ switch (option) {
     console.log(getUserById(args[1]));
     break;
   case "add":
-    const newUser = createUserObject(args);
-    console.log(addUser(newUser));
+      const newUser = createUserObject(args);
+      if (!newUser.type) { // Viene objeto de error
+        console.log(addUser(newUser));
+      }else console.log(newUser);
     break;
   case "update":
-    const updatedUser = createUpdateUserObject(args);
-    console.log(updateUser(updatedUser));
+    const updUser = createUpdateUserObject(args);
+    if (!updUser.type) {
+      console.log(updateUser(updUser));
+    }else console.log(updUser);
     break;
   case "delete":
     console.log(deleteUser(args[1]));

@@ -3,9 +3,13 @@ import dotenv from "dotenv";
 
 dotenv.config();
 const createUserObject = (args) => {
-  try { // Dejamos el Try Catch por lo conversado en clase pero entendemos que puede no cumplir funcion
+  try { 
     const [nombre, apellido, email, password] = args.slice(1); 
-    // Retiramos validacion por no ser necesaria, ya existe en models (updateUser)
+
+    if (args.length > 5) {
+      throw new Error("Argument exceded");
+    }
+
     return {
     nombre, 
     apellido, 
@@ -19,9 +23,12 @@ const createUserObject = (args) => {
 };
 
 const createUpdateUserObject = (args) => {
-  try { // Dejamos el Try Catch por lo conversado en clase pero entendemos que puede no cumplir funcion
+  try {
     const [id, nombre, apellido, email, password] = args.slice(1);
-    // Retiramos validacion por no ser necesaria, ya existe en models (updateUser)
+    
+    if (args.length > 6) {
+      throw new Error("Argument exceded");
+    }
     const updatedUser = {};
     updatedUser.id = id;    
     if (nombre) updatedUser.nombre = nombre;
