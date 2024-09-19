@@ -1,2 +1,4 @@
 .env
 node_modules
+
+# Las carpetas data y error no las excluimos para que Gabi pueda corregir

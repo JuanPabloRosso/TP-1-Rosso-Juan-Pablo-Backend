@@ -59,9 +59,6 @@ const getUserById = (id) => {
 // console.log(resp);
 
 
-
-
-
 const addUser = (userData) => {
   try {
     // addUser recibe un objeto con toda la data para el nuevo usuario
@@ -123,13 +120,11 @@ const addUser = (userData) => {
 // const resp = addUser(obj);
 // console.log(resp);
 
-
-
 const updateUser = (userData) => {
   try {
     const {id, nombre, apellido, email, password} = userData; // Ingresa la data
 
-    if (!id){ // Valida data existente + id
+    if (!id){ // Valida ID existente
       throw new Error("ID is missing");
     }
 
@@ -167,8 +162,6 @@ const updateUser = (userData) => {
     if (apellido) user.apellido = apellido;
     if (email) user.email = email;
     if (password) user.password = hash;
-
-    user.isLoggedIn = false;
 
     writeFileSync(PATH_FILE_USER, JSON.stringify(users));
     return user;
@@ -209,4 +202,4 @@ const deleteUser = (id) => {
 
 // console.log(deleteUser("897796d9-77a5-4d06-84f6-9fd9cc6ec047"));
 
-export { getUsers, getUserById, addUser, updateUser, deleteUser};
+export { getUsers, getUserById, addUser, updateUser, deleteUser, PATH_FILE_USER, PATH_FILE_ERROR};

@@ -1,17 +1,14 @@
-import { getUsers, getUserById, addUser, updateUser, deleteUser } from "./models.js";
-import dotenv from "dotenv";
+import { getUsers, getUserById, addUser, updateUser, deleteUser, PATH_FILE_USER, PATH_FILE_ERROR } from "./models.js";
 import {createUserObject, createUpdateUserObject} from "./utils/createObjetcUser.js";
 import { handleError } from "./utils/handleError.js";
 import { help } from "./utils/help.js";
-
-dotenv.config();
 
 const args = process.argv.splice(2);
 const option = args[0];
 
 switch (option) {
   case "list":
-    console.log(getUsers(process.env.PATH_FILE_USER));
+    console.log(getUsers(PATH_FILE_USER));
     break;
   case "search":
     console.log(getUserById(args[1]));
@@ -32,8 +29,7 @@ switch (option) {
   break;
   default:
     const error = handleError(
-      new Error("Comand Incorrect"),
-      process.env.PATH_FILE_ERROR
+      new Error("Comand Incorrect"), PATH_FILE_ERROR
     );
     console.log(error);
     break;
