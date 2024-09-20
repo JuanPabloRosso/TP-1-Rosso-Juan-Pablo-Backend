@@ -1,7 +1,6 @@
 import { handleError } from "./handleError.js";
-import dotenv from "dotenv";
+import { PATH_FILE_ERROR } from "../models.js";
 
-dotenv.config();
 const createUserObject = (args) => {
   try { 
     const [nombre, apellido, email, password] = args.slice(1); 
@@ -17,7 +16,7 @@ const createUserObject = (args) => {
     password
   };
   } catch (error) {
-    const objError = handleError(error, process.env.PATH_FILE_ERROR);
+    const objError = handleError(error, PATH_FILE_ERROR);
     return objError;
   }
 };
@@ -38,7 +37,7 @@ const createUpdateUserObject = (args) => {
 
     return updatedUser;
   } catch (error) {
-    const objError = handleError(error, process.env.PATH_FILE_ERROR);
+    const objError = handleError(error, PATH_FILE_ERROR);
     return objError;
   }
 };

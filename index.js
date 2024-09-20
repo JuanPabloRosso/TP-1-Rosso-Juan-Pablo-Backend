@@ -14,20 +14,20 @@ switch (option) {
     console.log(getUserById(args[1]));
     break;
   case "add":
-      const newUser = createUserObject(args);
-      if (!newUser.type) { // Viene objeto de error
-        console.log(addUser(newUser));
-      }else console.log(newUser);
-    break;
+    const newUser = createUserObject(args);
+    if (!newUser.type) { // Viene objeto de error
+      console.log(addUser(newUser));
+    }else console.log(newUser);
+  break;
   case "update":
     const updUser = createUpdateUserObject(args);
     if (!updUser.type) {
       console.log(updateUser(updUser));
     }else console.log(updUser);
-    break;
+  break;
   case "delete":
     console.log(deleteUser(args[1]));
-    break;
+  break;
   case "help":
     console.log(help());
   break;
@@ -36,5 +36,5 @@ switch (option) {
       new Error("Comand Incorrect"), PATH_FILE_ERROR
     );
     console.log(error);
-    break;
+  break;
 }
