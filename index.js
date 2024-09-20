@@ -21,7 +21,7 @@ switch (option) {
   break;
   case "update":
     const updUser = createUpdateUserObject(args);
-    if (!updUser.type) {
+    if (!updUser.type) { // Viene objeto de error
       console.log(updateUser(updUser));
     }else console.log(updUser);
   break;

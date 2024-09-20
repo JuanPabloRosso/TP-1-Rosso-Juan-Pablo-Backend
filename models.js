@@ -9,7 +9,6 @@ const PATH_FILE_USER=process.env.PATH_FILE_USER;
 const PATH_FILE_ERROR=process.env.PATH_FILE_ERROR;
 
 // 2° Declarar los metodos
-
 const getUsers = (urlfile) => {
   try {
     if (!urlfile) {
@@ -32,9 +31,6 @@ const getUsers = (urlfile) => {
   }
 };
 
-// const resp = getUsers(PATH_FILE_USER);
-// console.log(resp);
-
 const getUserById = (id) => {
   try {
     if (!id) {
@@ -55,9 +51,6 @@ const getUserById = (id) => {
   }
 };
 
-// const resp = getUserById("897796d9-77a5-4d06-84f6-9fd9cc6ec045");
-// console.log(resp);
-
 
 const addUser = (userData) => {
   try {
@@ -65,7 +58,7 @@ const addUser = (userData) => {
     const {nombre, apellido, email, password} =  userData;
     
     // valida que esten los datos míminos para añadir un nuevo usuario
-    if (!nombre || !apellido || !email || !password) { // es un OR que significa O ||
+    if (!nombre || !apellido || !email || !password) {
       throw new Error("Missing data");
     }
     // Validamos que el nombre, apellido, email sean string
@@ -80,7 +73,8 @@ const addUser = (userData) => {
 
     const users = getUsers(PATH_FILE_USER);
 
-    const findEmail = users.find((user) => user.email === email);
+    // No usamos getUserById por que nos devuelve una copia del objeto y no termina de modificarlo nunca
+    const findEmail = users.find((user) => user.email === email); 
 
     if (findEmail) {
       throw new Error("Email already exists");
@@ -110,16 +104,6 @@ const addUser = (userData) => {
   }
 };
 
-// const obj = {
-//   "nombre": "Emma",
-//   "apellido":"Issac",
-//   "email":"EmmaIssac@gmail.com",
-//   "password":"1212"
-// }
-
-// const resp = addUser(obj);
-// console.log(resp);
-
 const updateUser = (userData) => {
   try {
     const {id, nombre, apellido, email, password} = userData; // Ingresa la data
@@ -144,7 +128,7 @@ const updateUser = (userData) => {
     const users = getUsers(PATH_FILE_USER); // llamada a usuarios
     const user = users.find((user) => user.id === id); // busco id requerido
 
-    if (!user) { // si  no hay usuario retorna error
+    if (!user) { // si no hay usuario retorna error
       throw new Error("User not found");
     }
 
@@ -171,16 +155,6 @@ const updateUser = (userData) => {
   }
 };
 
-// const obj = {
-//     "id":"897796d9-77a5-4d06-84f6-9fd9cc6ec045",
-//     "nombre":"Juan-Pablo",
-//     "apellido":"Rosso",
-//     "email":"juanpablorosso@gmail.com",
-//     "password":"3455"
-//   }  
-
-// console.log(updateUser(obj));
-
 const deleteUser = (id) => {
   try {
     if (!id) {
@@ -200,6 +174,5 @@ const deleteUser = (id) => {
   }
 };
 
-// console.log(deleteUser("897796d9-77a5-4d06-84f6-9fd9cc6ec047"));
 
 export { getUsers, getUserById, addUser, updateUser, deleteUser, PATH_FILE_USER, PATH_FILE_ERROR};
