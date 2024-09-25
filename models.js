@@ -2,6 +2,7 @@ import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { randomUUID, createHash } from "node:crypto";
 import dotenv from "dotenv";
 import { handleError } from "./utils/handleError.js";
+import { validateEmail } from "./utils/validateEmail.js";
 
 // 1° recuperar variables de entorno
 dotenv.config();
@@ -67,10 +68,10 @@ const addUser = (userData) => {
     }
 
     // Validamos contenido de Email
-    if (!email.includes("@")) {
+    if (!validateEmail(email)) {
       throw new Error("Invalid Email");
     }
-
+    
     const users = getUsers(PATH_FILE_USER);
 
     // No usamos getUserById por que nos devuelve una copia del objeto y no termina de modificarlo nunca
@@ -122,9 +123,10 @@ const updateUser = (userData) => {
     }
 
     // Validamos contenido de Email
-    if (!email.includes("@")) {
+    if (!validateEmail(email)) {
       throw new Error("Invalid Email");
     }
+    
     const users = getUsers(PATH_FILE_USER); // llamada a usuarios
     const user = users.find((user) => user.id === id); // busco id requerido
 
